@@ -1,5 +1,5 @@
 import numpy as np
-import gospa_python
+import gospapy
 from scipy.stats import multivariate_normal
 
 def generate_tracks(num_generate, distributions):
@@ -55,13 +55,13 @@ def test_case_Rahmatullah2017():
                 assignments,
                 localization,
                 gospa_missed,
-                gospa_false) = gospa_python.calculate_gospa(
+                gospa_false) = gospapy.calculate_gospa(
                         chosen_targets,
                         chosen_tracks,
                         c=8, p=1)
                 for target_id, track_id in assignments.items():
                     if target_id != track_id:
-                        print target_id, track_id
+                        print("Target {} matched to {}".format(target_id, track_id))
                 gospa_values[n_miss, n_false][n_mc] = gospa
 
     for n_miss in N_misses:

@@ -1,5 +1,5 @@
 import numpy as np
-import gospa_python
+import gospapy
 import matplotlib.pyplot as plt
 
 def test_gospa(target_position, track_position, c=3):
@@ -7,7 +7,7 @@ def test_gospa(target_position, track_position, c=3):
     assignment,
     gospa_localization,
     gospa_missed,
-    gospa_false) = gospa_python.calculate_gospa(
+    gospa_false) = gospapy.calculate_gospa(
         target_position,
         track_position,
         c=c, p=1)
