@@ -75,12 +75,12 @@ def calculate_gospa(targets, tracks, c, p, alpha=2,
                 current_cost = assignment_cost_function(
                     targets[n_target], tracks[n_track])**p
                 cost_matrix[n_target,n_track] = np.min([
-                    current_cost, miss_cost])
+                    current_cost, alpha*miss_cost])
         target_assignment, track_assignment = linear_sum_assignment(cost_matrix)
         gospa_localization = 0
         target_to_track_assigments = dict()
         for target_idx, track_idx in zip(target_assignment, track_assignment):
-            if cost_matrix[target_idx, track_idx] < miss_cost:
+            if cost_matrix[target_idx, track_idx] < alpha*miss_cost:
                 gospa_localization += cost_matrix[target_idx, track_idx]
                 target_to_track_assigments[target_idx] = track_idx
         num_assignments = len(target_to_track_assigments)
