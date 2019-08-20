@@ -2,7 +2,7 @@
 
 gospapy is a Python implementation of the generalized optimized sub-pattern assignment (GOSPA), introduced by [1]. It is compatible with Python 2.7 and 3.7.
 
-See [https://github.com/abusajana/GOSPA](abusajana/GOSPA) for a Matlab implementation. This implementation has been verified with the example script provided there.
+See [abusajana/GOSPA](https://github.com/abusajana/GOSPA) for a Matlab implementation. This implementation has been verified with the example script provided there.
 
 In addition to the GOSPA metric, the method returns the target-to-track assignment and the decomposed cost.
 
