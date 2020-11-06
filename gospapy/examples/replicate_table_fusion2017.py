@@ -1,3 +1,10 @@
+""" Test case from the reference paper.
+
+This replicates Table 1 from the reference paper. The values of the true target
+position and the target-originated positions are obtained from the paper. The
+false track positions are approximate, and read out from the figure.  This will
+cause a slight difference in the two first columns.
+"""
 import numpy as np
 import gospapy
 from scipy.stats import multivariate_normal
@@ -12,7 +19,7 @@ def generate_tracks(num_generate, distributions):
             tracks.append(distributions[track_idx].rvs())
         return tracks
 
-def test_case_Rahmatullah2017():
+def test_case_Rahmatullah2017(N_MC, chosen_p):
     target_position = [
             np.array([-6, -6]),
             np.array([0, 3])]
@@ -30,13 +37,15 @@ def test_case_Rahmatullah2017():
             np.array([17, 17]),
             np.array([42, 30]),
             np.array([20, 15])]
-    target_distribution = [multivariate_normal(pos, np.identity(2)) for pos in target_position]
-    true_track_distribution = [multivariate_normal(pos, np.identity(2)) for pos in true_track_position]
-    false_track_distribution = [multivariate_normal(pos, np.identity(2)) for pos in false_track_position]
+    target_distribution = [multivariate_normal(pos, np.identity(2))
+            for pos in target_position]
+    true_track_distribution = [multivariate_normal(pos, np.identity(2))
+            for pos in true_track_position]
+    false_track_distribution = [multivariate_normal(pos, np.identity(2))
+            for pos in false_track_position]
 
     N_misses = [0, 1, 2]
     N_false = [0, 1, 3, 10]
-    N_MC = 1000
     gospa_values = dict()
     for n_miss in N_misses:
         for n_false in N_false:
@@ -58,18 +67,17 @@ def test_case_Rahmatullah2017():
                 gospa_false) = gospapy.calculate_gospa(
                         chosen_targets,
                         chosen_tracks,
-                        c=8, p=1)
-                for target_id, track_id in assignments.items():
-                    if target_id != track_id:
-                        print("Target {} matched to {}".format(target_id, track_id))
+                        c=8, p=chosen_p)
                 gospa_values[n_miss, n_false][n_mc] = gospa
-
-    for n_miss in N_misses:
-        for n_false in N_false:
-            mean_gospa = np.mean(gospa_values[n_miss, n_false])
-            print("GOSPA={} for {} miss, {} false alarms".format(
-                    mean_gospa, n_miss, n_false))
+    tabrow = "|| {:2d} || {:>5.2f} | {:>5.2f} | {:>5.2f} ||"
+    for n_false in N_false:
+        mean_gospa = [np.mean(gospa_values[n_miss, n_false])
+                for n_miss in N_misses]
+        print(tabrow.format(n_false, *mean_gospa))
     return gospa_values
 
 if __name__ == '__main__':
-    gospa_values = test_case_Rahmatullah2017()
+    _N_MC = 1000
+    for p in [1, 2]:
+        gospa_values = test_case_Rahmatullah2017(_N_MC, p)
+

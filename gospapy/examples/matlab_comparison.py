@@ -1,3 +1,7 @@
+""" Verifies the example against the matlab implementation.
+
+The matfile is generated in matlab, and the GOSPA is calculated independently.
+"""
 import numpy as np
 import gospapy
 import matplotlib.pyplot as plt
@@ -28,16 +32,9 @@ if __name__ == '__main__':
     matlab_values = loadmat('gospa_matlab.mat', squeeze_me=True)
     targets = mat2list(matlab_values['x_mat'])
     tracks = mat2list(matlab_values['y_mat'])
-    (gospa,
-    assignment,
-    gospa_localization,
-    gospa_missed,
-    gospa_false) = gospapy.calculate_gospa(
-        targets,
-        tracks,
-        c=matlab_values['c'],
-        p=matlab_values['p'],
-        alpha=matlab_values['alpha'])
+    gospa, assignment, gospa_localization, gospa_missed, gospa_false = (
+            gospapy.calculate_gospa( targets, tracks, c=matlab_values['c'],
+                p=matlab_values['p'], alpha=matlab_values['alpha']))
     print("matlab={}\n python={}".format(matlab_values['d_gospa'], gospa))
     plot_scenario(targets, tracks, assignment)
     plt.show()

@@ -1,3 +1,7 @@
+""" Simple, static tests.
+
+Defines some simple scenarios. Should be rewritten into a Pytest-file.
+"""
 import numpy as np
 import gospapy
 import matplotlib.pyplot as plt
@@ -40,6 +44,7 @@ def test_case_1():
             np.array([4, 5]),
             np.array([7, 4])]
     track_position = target_position
+    print("Test case 1: All equal")
     test_gospa(target_position, track_position)
 
 def test_case_2():
@@ -48,21 +53,23 @@ def test_case_2():
             np.array([4, 5]),
             np.array([7, 4])]
     track_position = target_position[:2]
+    print("Test case 2: One missing track")
     test_gospa(target_position, track_position)
 
 def test_case_3():
     target_position = [
             np.array([2, 2]),
-            np.array([4, 5]),
-            np.array([7, 4])]
-    track_position = target_position[:2]
-    test_gospa(track_position, target_position)
+            np.array([4, 5])]
+    track_position = target_position + [np.array([7, 4])]
+    print("Test case 3: One false target (symmetric w.r.t test 2)")
+    test_gospa(target_position, track_position)
 
 def test_case_4():
     target_position = [
             np.array([2, 2])]
     track_position = [
-            np.array([3, 3])]
+            np.array([2, 3])]
+    print("Test case 4: position difference")
     test_gospa(track_position, target_position)
 
 

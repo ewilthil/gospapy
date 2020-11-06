@@ -3,9 +3,15 @@ import numpy as np
 from scipy.optimize import linear_sum_assignment
 
 def euclidian_distance(x, y):
+    """ Euclidian distance function. """
     return np.linalg.norm(x-y)
 
 def check_gospa_parameters(c, p, alpha):
+    """ Check parameter bounds.
+
+    If the parameter values are outside the allowable range specified in the
+    definition of GOSPA, a ValueError is raised.
+    """
     if alpha <= 0 or alpha > 2:
         raise ValueError("The value of alpha is outside the range (0, 2]")
     if c <= 0:
@@ -15,9 +21,14 @@ def check_gospa_parameters(c, p, alpha):
 
 def calculate_gospa(targets, tracks, c, p, alpha=2,
         assignment_cost_function=euclidian_distance):
-    """ GOSPA metric for multitarget tracking filters
+    """ GOSPA metric for multitarget tracking filters.
+    
+    The algorithm is of course symmetric and can be used for any pair of
+    comparable sets, but the labels 'targets' and tracks' are used to denote
+    them as this is one of the most common applications.
 
-    Provide a detailed description of the method.
+    Returns the total GOSPA, the target-to-track assignment and the decomposed
+    contribution of assignment errors, missed targets and false tracks.
 
     Parameters
     ----------
@@ -26,13 +37,18 @@ def calculate_gospa(targets, tracks, c, p, alpha=2,
     tracks : iterable of elements
         Contains the elements of the second set.
     c : float
-        Defines the cost of a missed target or a false track, equal to c/2.
+        The maximum allowable localization error, and also determines the cost
+        of a cardinality mismatch.
     p : float
-        Briefly describe the parameter.
+        Order parameter. A high value of p penalizes outliers more.
     alpha : float, optional
-        Briefly describe the parameter.
+        Defines the cost of a missing target or false track along with c. The
+        default value is 2, which is the most suited value for tracking
+        algorithms.
     assignment_cost_function : function, optional
-        Briefly describe the parameter.
+        This is the metric for comparing tracks and targets, referred to as
+        d(x,y) in the reference. If no parameter is given, euclidian distance
+        between x and y is used.
 
     Returns
     -------
