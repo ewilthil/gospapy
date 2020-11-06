@@ -1,14 +1,20 @@
 ## About
 
-gospapy is a Python implementation of the generalized optimized sub-pattern assignment (GOSPA), introduced by [1]. It is compatible with Python 2.7 and 3.7.
+gospapy is a Python implementation of the generalized optimal sub-pattern assignment (GOSPA), introduced by [1], also see [2] for a presentation. It is compatible with Python 2.7 and 3.7.
 
-See [abusajana/GOSPA](https://github.com/abusajana/GOSPA) for a Matlab implementation. This implementation has been verified with the example script provided there.
+See [abusajana/GOSPA](https://github.com/abusajana/GOSPA) for a Matlab implementation. This implementation has been verified with the example script provided there, see the script in the example folder.
 
-In addition to the GOSPA metric, the method returns the target-to-track assignment and the decomposed cost.
+In addition to the GOSPA metric, the method returns the target-to-track assignment and the decomposed cost. See the example folder for usage, and the docstring of the module. 
 
-### Q/A
-- Can I use this with my own classes?
-    - Yes. The Euclidian distance is used as a cost function by default, but any function that takes two elements and return an assignment cost can be used. See the test file `test_customClass.py` for an example.
+The Euclidian distance is used as a cost function by default, but any function that takes two elements and return an assignment cost can be used. See the example file `custom_class.py` for how to use this with your own classes.
+
+## Installation
+
+Clone the repo, navigate into it and run `pip install -e .`. The `-e`-flag installs this as editable, which is reccomended if you need to modify it.
 
 ## References
 [1] A. S. Rahmathullah, A. F. Garcia-Fernandez, and L. Svensson. Generalized optimal sub-pattern assignment metric. In 20th International Conference on Information Fusion (FUSION), July 2017. Available online: https://arxiv.org/abs/1601.05585
+[2] L. Svensson, Generalized optimal sub-pattern assignment metric (GOSPA), presentation, 2017. Available online: https://youtu.be/M79GTTytvCM
+
+## Contact
+Bugs and suggestions can be reported as issues on Github. For code improvements, pull requests are appreciated. For additional contact info, see ewilthil.github.io.
