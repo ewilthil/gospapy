@@ -14,6 +14,7 @@ Clone the repo, navigate into it and run `pip install -e .`. The `-e`-flag insta
 
 ## References
 [1] A. S. Rahmathullah, A. F. Garcia-Fernandez, and L. Svensson. Generalized optimal sub-pattern assignment metric. In 20th International Conference on Information Fusion (FUSION), July 2017. Available online: https://arxiv.org/abs/1601.05585
+
 [2] L. Svensson, Generalized optimal sub-pattern assignment metric (GOSPA), presentation, 2017. Available online: https://youtu.be/M79GTTytvCM
 
 ## Contact
