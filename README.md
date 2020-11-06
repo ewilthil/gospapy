@@ -28,4 +28,4 @@ See the examples for more use cases. Most of the code is documented inline.
 [2] L. Svensson, Generalized optimal sub-pattern assignment metric (GOSPA), presentation, 2017. Available online: https://youtu.be/M79GTTytvCM
 
 ## Contact
-Bugs and suggestions can be reported as issues on Github. For code improvements, pull requests are appreciated. For additional contact info, see ewilthil.github.io.
+Bugs and suggestions can be reported as issues on Github. For code improvements, pull requests are appreciated. For additional contact info, see [ewilthil.github.io](ewilthil.github.io).
