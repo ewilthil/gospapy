@@ -12,6 +12,16 @@ The Euclidian distance is used as a cost function by default, but any function t
 
 Clone the repo, navigate into it and run `pip install -e .`. The `-e`-flag installs this as editable, which is reccomended if you need to modify it.
 
+## Usage
+A typical usage is
+```Python
+import gospapy
+gospa, assignment, loc_err, miss_err, false_err = gospapy.calculate_gospa(
+    current_targets, current_tracks, cutoff_distance, order)
+```
+
+See the examples for more use cases. Most of the code is documented inline.
+
 ## References
 [1] A. S. Rahmathullah, A. F. Garcia-Fernandez, and L. Svensson. Generalized optimal sub-pattern assignment metric. In 20th International Conference on Information Fusion (FUSION), July 2017. Available online: https://arxiv.org/abs/1601.05585
 
